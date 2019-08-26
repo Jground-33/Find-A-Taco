@@ -13,7 +13,9 @@ module.exports = {
 
 
 function index (req, res) {
-    res.render('restaurants/index', {testData});
+    res.render('restaurants/index', {
+        title: 'restaurants', 
+        testData});
 }
 
 
