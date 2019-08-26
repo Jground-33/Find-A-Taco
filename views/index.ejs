@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+
+  <!-- <a href="/auth/google">Login to Google</a> -->
+
+  <!-- <a href="/logout"> Click here to logout</a> -->
+
+  <button id="find-a-taco" type="submit">Find A Taco</button>
+
+
+
+  <script>
+    let lat,lon; 
+    navigator.geolocation.getCurrentPosition(position => {
+      lat = position.coords.latitude
+      lon = position.coords.longitude
+    })
+
+    document.getElementById('find-a-taco')
+      .addEventListener('click', () => {
+        window.location.href = `/restaurants/${lat},${lon}`
+      });
+
+  </script>
+</body>
 </html>
