@@ -2,6 +2,7 @@
     
     <% testData.restaurants.forEach( rest => { %>
     <div class="list-container">
+        <img class="thumbnail" src="<%= rest.restaurant.thumb%>" alt="restaurant thumbnail"> 
         <p> <%= rest.restaurant.name%> </p>
         
     </div>

@@ -2,15 +2,14 @@
 let testData = require('../testData');
 
 const Restaurant = require('../models/restaurant');
-const zomato = require('../config/zom');
-const client = zomato.createClient({
+const zom = require('../config/zom');
+const client = zom.createClient({
     userKey: process.env.ZOMATO_API_TOKEN
 })
 
 module.exports = {
     index,
 }
-
 
 function index (req, res) {
     res.render('restaurants/index', {

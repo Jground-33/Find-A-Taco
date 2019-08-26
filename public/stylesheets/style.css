@@ -14,16 +14,33 @@ a {
   color: #00B7FF;
 }
 
-.list-container {
-  background-color: lightblue;
-  width: 80%;
-  height: 10%;
-}
-
 .header {
   height: 15%;
   background-color: grey;
   width: 100vw;
   margin-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+#taco-icon {
+  margin-left: 2%;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.list-container {
+  background-color: lightblue;
+  width: 80%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.thumbnail {
+  margin: 5%;
+  height: 90%;
 }
