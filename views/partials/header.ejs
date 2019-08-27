@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <script defer src="/javascripts/main.js"></script>
     <title><%= title %></title>
 </head>
 
-<body>
-    <nav class="header">
-                <img id="taco-icon" src="/images/taco.png" alt="taco icon" width="60px">
-        <div class="title">Find a Taco</div>
-  <a href="/auth/google">Login to Google</a>
-
-  <!-- <a href="/logout"> Click here to logout</a> -->
-
-
-    </nav>
+<nav class="header">
+    <img id="taco-icon" src="/images/taco.png" alt="taco icon" width="60px">
+    <div class="title">Find a Taco</div>
+    <%if (user) { %>
+    <a href="/logout"> Click here to logout</a>
+    <% } else { %>
+    <a href="/auth/google">Login to Google</a>
+    <% } %>
+</nav>

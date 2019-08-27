@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
     email: String,
     avatar: String,
     googleId: String,
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Restaurant'
+    }]
 }, {
     timestamps: true
 });

@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+
+<h1><%= title %></h1>
+
+<img src="<%= data.thumb %>" alt="">
+<p><%=data.location.address%>, Texas</p>
+<!-- <a href="<%=// data.url %>"><%=// title %>'s Website</a> -->
+<p><%= data.cuisines %></p>
+
+<form action="/users/add-favorite/<%= data.id %>" method="post">
+<button type="submit">Add To Favorites</button>
+</form>
+
+
+</body>
+
+</html>

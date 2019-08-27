@@ -1,14 +1,22 @@
 <%- include('../partials/header') %>
-    
-    <% testData.restaurants.forEach( rest => { %>
-    <div class="list-container">
-        <img class="thumbnail" src="<%= rest.restaurant.thumb%>" alt="restaurant thumbnail"> 
-        <p> <%= rest.restaurant.name%> </p>
-        
-    </div>
 
-    <br>
-    <% }) %>
+
+
+<% testData.restaurants.forEach( rest => { %>
+    <div id="<%= rest.restaurant.id%>" class="list-container">
+        <img class="thumbnail" src="<%= rest.restaurant.thumb%>" alt="restaurant thumbnail">
+        <div>
+            <a href="/restaurants/<%= rest.restaurant.id %>/show" class="restaurant-name"><%= rest.restaurant.name%></a>
+            <p><%= rest.restaurant.location.address%></p>
+            <p>Rating: <%= rest.restaurant.user_rating.aggregate_rating%></p>
+        </div>
+</div>
+
+
+<br>
+<% }) %>
+
+
 
 
 
