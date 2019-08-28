@@ -6,11 +6,12 @@ const userCtrl = require('../controllers/users')
 router.get('/', isLoggedIn, userCtrl.index);
 router.post('/add-favorite/:id', isLoggedIn, userCtrl.addFavorite);
 
+
+
 function isLoggedIn(req, res, next) {
     if ( req.isAuthenticated() ) return next();
     res.redirect('/auth/google');
   }
-
 
 
 module.exports = router;

@@ -11,15 +11,17 @@ const client = zom.createClient({
 module.exports = {
     index,
     show,
+    addReview,
+    deleteReview,
 }
 
-function index(req, res) {
-    res.render('restaurants/index', {
-        user: req.user,
-        title: 'restaurants',
-        testData
-    });
-}
+// function index(req, res) {
+//     res.render('restaurants/index', {
+//         user: req.user,
+//         title: 'restaurants',
+//         testData
+//     });
+// }
 
 // function show(req, res) {
 //     res.render('restaurants/show', {
@@ -34,15 +36,16 @@ function show(req, res) {
         res_id: req.params.id,
     }, async (err, results) => {
         results = JSON.parse(results)
-        let restExists = await Restaurant.exists({
-            api_id: results.id
-        })
+        console.log(results)
+        let restExists = await Restaurant.exists({api_id: results.id})
+        let restaurant = await Restaurant.findOne({api_id: results.id})
         if (err) console.log(err)
         else if (restExists) {
             res.render('restaurants/show', {
                 user: req.user,
                 title: results.name,
                 data: results,
+                restaurant,
             });
         } else {
             let formatedObj = {
@@ -61,6 +64,7 @@ function show(req, res) {
                                 user: req.user,
                                 title: results.name,
                                 data: results,
+                                restaurant,
                             });
                         }
                     });
@@ -74,22 +78,42 @@ function show(req, res) {
 
 
 
-/// commented out API call to not stack up calls during CSS design
-// function index (req, res) {
-// //    let lat = req.params.id.slice(0,10)
-// //    let lon = req.params.id.slice(19)
+//  // commented out API call to not stack up calls during CSS design
+function index (req, res) {
+    let lat = req.params.lat
+    let lon = req.params.lon
 //    let lat = "30.2686023"
 //    let lon = "-97.7451943"
-//     client.search({
-//         q: "taco", //Search Keyword
-//         lat, //latitude
-//         lon, //longitude
-//         count: "2", // number of maximum result to display
-//         radius: "500", //radius around (lat,lon); to define search area, defined in meters(M)
-//     }, function (err, results) {
-//         if (err) console.log(err);
-//         else res.render('restaurants/index', {
-//             title: 'restaurants',
-//             testData: JSON.parse(results)})
-//     });
-// }
+    client.search({
+        q: "taco", //Search Keyword
+        lat, //latitude
+        lon, //longitude
+        count: "20", // number of maximum result to display
+        radius: "500", //radius around (lat,lon); to define search area, defined in meters(M)
+    }, function (err, results) {
+        if (err) console.log(err);
+        else res.render('restaurants/index', {
+            user: req.user,
+            title: 'restaurants',
+            testData: JSON.parse(results)})
+    });
+}
+
+async function addReview(req, res) {
+    let restaurant = await Restaurant.findOne({api_id: req.params.id})
+    restaurant.reviews.push(req.body)
+    restaurant.save(err => {
+        if(err) console.log(err)
+        res.redirect(`/restaurants/${req.params.id}/show`)
+    })
+}
+
+async function deleteReview(req, res) {
+    let restaurant = await Restaurant.findOne({api_id: req.params.restId})
+    restaurant.reviews.splice(req.params.reviewIdx, 1);
+    console.log(restaurant.reviews)
+    restaurant.save( err => {
+        if (err) console.log(err);
+        res.redirect(`/restaurants/${req.params.restId}/show`)
+    });
+}

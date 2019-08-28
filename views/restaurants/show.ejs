@@ -5,12 +5,55 @@
 
 <img src="<%= data.thumb %>" alt="">
 <p><%=data.location.address%>, Texas</p>
-<!-- <a href="<%=// data.url %>"><%=// title %>'s Website</a> -->
 <p><%= data.cuisines %></p>
-
+<br>
 <form action="/users/add-favorite/<%= data.id %>" method="post">
 <button type="submit">Add To Favorites</button>
 </form>
+
+
+<br>
+<h2>Reviews</h2>
+<form id="add-review-form" method="POST" action="/restaurants/<%= data.id %>/reviews">
+  <label>Review:</label>
+  <textarea name="content"></textarea>
+  <label>Rating:</label>
+  <select name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <input type="submit" value="Add Review">
+</form>
+
+<% if (restaurant.reviews.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Review</th>
+        <th>Rating</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% restaurant.reviews.forEach( (r, idx) =>  { %>
+        <tr>
+          <td><%= r.createdAt.toLocaleDateString() %></td>
+          <td><%= r.content %></td>
+          <td><%= r.rating %></td>
+          <td> <div>edit</div> <form action="/restaurants/<%= data.id %>/<%= idx %>/?_method=DELETE" method="post"><button type="submit">DELETE</button></form>  </td>
+        </tr>
+      <% }); %>
+      
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Reviews Yet</h5>
+<% } %>
+
 
 
 </body>

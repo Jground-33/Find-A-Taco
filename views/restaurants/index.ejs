@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 
-
+<section>
 <% testData.restaurants.forEach( rest => { %>
     <div id="<%= rest.restaurant.id%>" class="list-container">
         <img class="thumbnail" src="<%= rest.restaurant.thumb%>" alt="restaurant thumbnail">
@@ -12,9 +12,9 @@
         </div>
 </div>
 
-
 <br>
 <% }) %>
+</section>
 
 
 

@@ -1,23 +1,25 @@
 <%- include('./partials/header') %>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+<h1><%= title %></h1>
 
-  <button id="find-a-taco" type="submit">Find A Taco</button>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0e5CXHXqaVj3fMFrwVaR7lhPIOiCYvyaw13nJr669wR7C5BfP"
+  alt="taco meme">
+<br>
+<p>Welcome to <%= title %></p>
+<br>
+<button id="find-a-taco" type="submit">Find A Taco</button>
 
+<script>
+  let lat, lon;
+  navigator.geolocation.getCurrentPosition(position => {
+    lat = position.coords.latitude
+    lon = position.coords.longitude
+  })
 
-
-  <script>
-    let lat,lon; 
-    navigator.geolocation.getCurrentPosition(position => {
-      lat = position.coords.latitude
-      lon = position.coords.longitude
-    })
-
-    document.getElementById('find-a-taco')
-      .addEventListener('click', () => {
-        window.location.href = `/restaurants/${lat},${lon}`
-      });
-
-  </script>
+  document.getElementById('find-a-taco')
+    .addEventListener('click', () => {
+      window.location.href = `/restaurants/${lat}/${lon}`
+    });
+</script>
 </body>
+
 </html>
