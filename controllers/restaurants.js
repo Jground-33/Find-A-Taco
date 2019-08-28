@@ -11,8 +11,6 @@ const client = zom.createClient({
 module.exports = {
     index,
     show,
-    addReview,
-    deleteReview,
 }
 
 // function index(req, res) {
@@ -36,7 +34,7 @@ function show(req, res) {
         res_id: req.params.id,
     }, async (err, results) => {
         results = JSON.parse(results)
-        console.log(results)
+        // console.log(results)
         let restExists = await Restaurant.exists({api_id: results.id})
         let restaurant = await Restaurant.findOne({api_id: results.id})
         if (err) console.log(err)
@@ -82,8 +80,6 @@ function show(req, res) {
 function index (req, res) {
     let lat = req.params.lat
     let lon = req.params.lon
-//    let lat = "30.2686023"
-//    let lon = "-97.7451943"
     client.search({
         q: "taco", //Search Keyword
         lat, //latitude
@@ -99,21 +95,3 @@ function index (req, res) {
     });
 }
 
-async function addReview(req, res) {
-    let restaurant = await Restaurant.findOne({api_id: req.params.id})
-    restaurant.reviews.push(req.body)
-    restaurant.save(err => {
-        if(err) console.log(err)
-        res.redirect(`/restaurants/${req.params.id}/show`)
-    })
-}
-
-async function deleteReview(req, res) {
-    let restaurant = await Restaurant.findOne({api_id: req.params.restId})
-    restaurant.reviews.splice(req.params.reviewIdx, 1);
-    console.log(restaurant.reviews)
-    restaurant.save( err => {
-        if (err) console.log(err);
-        res.redirect(`/restaurants/${req.params.restId}/show`)
-    });
-}

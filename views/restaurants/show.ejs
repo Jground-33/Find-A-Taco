@@ -10,12 +10,9 @@
 <form action="/users/add-favorite/<%= data.id %>" method="post">
 <button type="submit">Add To Favorites</button>
 </form>
-
-
-<br>
+<hr>
 <h2>Reviews</h2>
-<form id="add-review-form" method="POST" action="/restaurants/<%= data.id %>/reviews">
-  <label>Review:</label>
+<form method="POST" action="/reviews/<%= data.id %>">
   <textarea name="content"></textarea>
   <label>Rating:</label>
   <select name="rating">
@@ -42,9 +39,18 @@
       <% restaurant.reviews.forEach( (r, idx) =>  { %>
         <tr>
           <td><%= r.createdAt.toLocaleDateString() %></td>
-          <td><%= r.content %></td>
+          <td id="<%= idx%>" class="review-content"><%= r.content %></td>
           <td><%= r.rating %></td>
-          <td> <div>edit</div> <form action="/restaurants/<%= data.id %>/<%= idx %>/?_method=DELETE" method="post"><button type="submit">DELETE</button></form>  </td>
+          <td> 
+                        
+            <form class="review-btn" action="/reviews/<%= data.id %>/edit/<%= idx %>" method="GET">
+              <button type="submit">EDIT</button>
+            </form> 
+            <form class="review-btn" action="/reviews/<%= data.id %>/<%= idx %>/?_method=DELETE" method="POST">
+              <button class="review-btn" type="submit">DELETE</button>
+            </form>  
+
+          </td>
         </tr>
       <% }); %>
       
@@ -53,7 +59,6 @@
 <% } else { %>
   <h5>No Reviews Yet</h5>
 <% } %>
-
 
 
 </body>

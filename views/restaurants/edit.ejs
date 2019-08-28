@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+
+
+<h4>Edit Review for <%= restaurant.name %></h4>
+
+
+<form method="POST" action="/reviews/<%= restaurant.api_id %>/update/<%= reviewIdx %>">
+    <textarea name="content"><%= restaurant.reviews[reviewIdx].content %></textarea>
+    <label>Rating:</label>
+    <select name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <input type="submit" value="Edit Review">
+</form>
+
+</body>
+
+</html>

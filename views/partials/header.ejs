@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script defer src="/javascripts/main.js"></script>
     <title><%= title %></title>
@@ -14,9 +16,9 @@
     <img id="taco-icon" src="/images/taco.png" alt="taco icon" width="60px">
     <div class="title">Find a Taco</div>
     <%if (user) { %>
-    <a href="/logout"> Click here to logout</a>
+    <a class="btn btn-danger auth" href="/logout">Logout</a>
     <% } else { %>
-    <a href="/auth/google">Login to Google</a>
+    <a class="btn btn-success auth" href="/auth/google">Login</a>
     <% } %>
 </nav>
 <div id="buffer"></div>

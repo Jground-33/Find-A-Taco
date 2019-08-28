@@ -1,3 +1,4 @@
+//User Controller
 const User = require('../models/user');
 const Restaurant = require('../models/restaurant');
 
@@ -7,11 +8,12 @@ module.exports = {
     addFavorite,
 }
 
-function index(req, res) {
-    console.log(req.user)
+async function index(req, res) {
+    let user = await User.findOne({googleId: req.user.googleId}).populate('favorites');
     res.render('users/index', {
         title: 'welcome user',
-        user: req.user
+        user,
+        restaurants: user.favorites,
     });
 }
 

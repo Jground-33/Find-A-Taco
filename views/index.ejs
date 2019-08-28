@@ -7,19 +7,12 @@
 <p>Welcome to <%= title %></p>
 <br>
 <button id="find-a-taco" type="submit">Find A Taco</button>
+<br>
+<button id="user" type="submit">Profile</button>
 
-<script>
-  let lat, lon;
-  navigator.geolocation.getCurrentPosition(position => {
-    lat = position.coords.latitude
-    lon = position.coords.longitude
-  })
 
-  document.getElementById('find-a-taco')
-    .addEventListener('click', () => {
-      window.location.href = `/restaurants/${lat}/${lon}`
-    });
-</script>
+
+<script defer src="/javascripts/landingpage.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@ body {
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  background-color: lightgrey;
+  background-color: #DAE7DD;
 }
 
 a {
@@ -15,8 +15,10 @@ a {
 }
 
 .header {
-  height: 125px;
-  background-color: grey;
+  padding: 10px;
+  color: white;
+  height: 100px;
+  background-color: rgb(73, 84, 119);
   width: 100vw;
   display: flex;
   justify-content: space-between;
@@ -32,23 +34,29 @@ a {
   font-size: 2rem;
 }
 
+.auth{
+  width: 20%;
+  padding: 5px;
+}
+
 #buffer {
-  height: 125px;
+  height: 100px;
   margin-bottom: 25px;
 }
 
-#find-a-taco {
+#find-a-taco, #user {
+  color: white;
   height: 50px;
   width: 200px;
   border-radius: 20px;
-  background-color: darkorange;
+  background-color: rgb(255, 165, 86);
   box-shadow: none;
-
+  font-size: 25px;
 }
 
 
 .list-container {
-  background-color: lightblue;
+  background-color: rgba(54, 213, 231, 0.4);
   width: 85%;
   height: 100px;
   display: flex;
@@ -69,7 +77,13 @@ p {
 }
 
 .avatar {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+}
+
+th, td {
+  text-align: center;
 }
 
 section {
@@ -78,4 +92,20 @@ section {
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
+}
+
+h1,h4 {
+  text-align: center;
+}
+
+.review-content {
+  width: 150px;
+}
+
+textarea {
+  display: block;
+}
+
+.review-btn {
+  display: inline;
 }
