@@ -11,6 +11,10 @@ This app will find a Taco truck or restaurant within a specified radius of the u
 
 <img src="./assets/Find a Taco Wireframe_Webflow.png" alt="Wireframe">
 
+## Trello  
+
+[Trello Board](https://trello.com/b/HnvbV6Ko)
+
 ## Future goals
 - Incorporate a top view map showing the restaurant's location. 
 - Add a Review about a taco place 

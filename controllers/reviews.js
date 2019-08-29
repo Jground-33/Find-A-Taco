@@ -44,7 +44,6 @@ async function updateReview(req, res) {
     }
 }
 
-
 async function edit(req, res) {
     let restaurant = await Restaurant.findOne({api_id: req.params.restId})
     res.render('restaurants/edit', {
