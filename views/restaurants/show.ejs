@@ -60,14 +60,17 @@
           <td id="<%= idx%>" class="review-content"><%= r.content %></td>
           <td><%= r.rating %></td>
           <td> 
-                        
-            <form class="review-btn" action="/reviews/<%= data.id %>/edit/<%= idx %>" method="GET">
-              <button type="submit">EDIT</button>
-            </form> 
-            <form class="review-btn" action="/reviews/<%= data.id %>/<%= idx %>/?_method=DELETE" method="POST">
-              <button class="review-btn" type="submit">DELETE</button>
-            </form>  
-
+            <% if (user) { %>
+          <%if (user.googleId === r.googleId) { %>
+              <form class="review-btn" action="/reviews/<%= data.id %>/edit/<%= idx %>" method="GET">
+                <button type="submit">EDIT</button>
+              </form> 
+              <form class="review-btn" action="/reviews/<%= data.id %>/<%= idx %>/?_method=DELETE" method="POST">
+                <button class="review-btn" type="submit">DELETE</button>
+              </form>  
+            <% } %>
+          <% } %>
+            
           </td>
         </tr>
       <% }); %>

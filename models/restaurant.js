@@ -10,7 +10,8 @@ const reviewSchema = new mongoose.Schema({
         type: Number,
         min: 1,
         max: 5,
-    }
+    },
+    googleId: String
 }, {
     timestamps: true
 })
@@ -29,12 +30,3 @@ const restaurantSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Restaurant', restaurantSchema);
-
-
-
-
-/*  what do i want to save in restaurant 
-
-
-
-*/
