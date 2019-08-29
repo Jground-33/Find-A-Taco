@@ -29,7 +29,7 @@ This app will find a Taco truck or restaurant within a specified radius of the u
 - Mongoose
 - OAuth
 - Passport.js
-- Zomato Node Module
+- Zomato API
 
 
 ## Credits
