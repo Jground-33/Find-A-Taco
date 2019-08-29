@@ -1,9 +1,9 @@
 # Find a Taco
-<!-- ![Screenshot](./assets) -->
+<img src="./assets/Screenshot from find-a-taco.png" alt="Wireframe">  
 
 ## What does this app do?
  
-[Find a Taco](#)
+[Find a Taco](https://find-a-taco.herokuapp.com/)
 
 This app will find a Taco truck or restaurant within a specified radius of the user's location. You can also log in to save your favorite taco places, store places you would like to visit in the future and filter which type of taco places you search for. 
 
@@ -25,7 +25,7 @@ This app will find a Taco truck or restaurant within a specified radius of the u
 - Mongoose
 - OAuth
 - Passport.js
-- Confetti.js
+- Zomato Node Module
 
 
 ## Credits
