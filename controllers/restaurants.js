@@ -76,10 +76,12 @@ function show(req, res) {
 
 
 function index (req, res) {
+    let lat = 30.2638274;
+    let lon = -97.7525458;
     client.search({
         q: "taco", 
-        lat: req.params.lat,
-        lon: req.params.lon,
+        lat: req.params.lat || lat,
+        lon: req.params.lon || lon,
         count: "20", // number of maximum result to display
         radius: "10000", //radius around (lat,lon); defined in meters(M)
     }, function (err, results) {
