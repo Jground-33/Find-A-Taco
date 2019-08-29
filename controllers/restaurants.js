@@ -1,7 +1,5 @@
 // Restaurant Controller
-let testData = require('../testData');
-const testShowData = require('../testShowData');
-
+const User = require('../models/user');
 const Restaurant = require('../models/restaurant');
 const zom = require('../config/zom');
 const client = zom.createClient({
@@ -32,25 +30,28 @@ module.exports = {
 function show(req, res) {
     client.getRestaurant({
         res_id: req.params.id,
-    }, async (err, results) => {
-        results = JSON.parse(results)
-        // console.log(results)
-        let restExists = await Restaurant.exists({api_id: results.id})
-        let restaurant = await Restaurant.findOne({api_id: results.id})
+    }, async (err, APIresults) => {
+        let user
+        APIresults = JSON.parse(APIresults)
+        if (req.user) {
+        user = await User.findOne({googleId: req.user.googleId}).populate('favorites');
+        }
+        let restExists = await Restaurant.exists({api_id: APIresults.id})
+        let restaurant = await Restaurant.findOne({api_id: APIresults.id})
         if (err) console.log(err)
         else if (restExists) {
             res.render('restaurants/show', {
-                user: req.user,
-                title: results.name,
-                data: results,
+                user,
+                title: APIresults.name,
+                data: APIresults,
                 restaurant,
             });
         } else {
             let formatedObj = {
-                api_id: results.id,
-                name: results.name,
-                address: results.location.address,
-                img: results.thumb,
+                api_id: APIresults.id,
+                name: APIresults.name,
+                address: APIresults.location.address,
+                img: APIresults.thumb,
             }
             Restaurant.create(formatedObj, (err, restaurant) => {
                 if (err) console.log(err)
@@ -59,9 +60,9 @@ function show(req, res) {
                         if (err) console.log(err)
                         else {
                             res.render('restaurants/show', {
-                                user: req.user,
-                                title: results.name,
-                                data: results,
+                                user,
+                                title: APIresults.name,
+                                data: APIresults,
                                 restaurant,
                             });
                         }
@@ -74,18 +75,13 @@ function show(req, res) {
 
 
 
-
-
-//  // commented out API call to not stack up calls during CSS design
 function index (req, res) {
-    let lat = req.params.lat
-    let lon = req.params.lon
     client.search({
-        q: "taco", //Search Keyword
-        lat, //latitude
-        lon, //longitude
+        q: "taco", 
+        lat: req.params.lat,
+        lon: req.params.lon,
         count: "20", // number of maximum result to display
-        radius: "500", //radius around (lat,lon); to define search area, defined in meters(M)
+        radius: "10000", //radius around (lat,lon); defined in meters(M)
     }, function (err, results) {
         if (err) console.log(err);
         else res.render('restaurants/index', {

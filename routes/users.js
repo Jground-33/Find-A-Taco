@@ -4,8 +4,8 @@ const userCtrl = require('../controllers/users')
 
 /* GET users listing. */
 router.get('/', isLoggedIn, userCtrl.index);
-router.post('/add-favorite/:id', isLoggedIn, userCtrl.addFavorite);
-
+router.post('/:id', isLoggedIn, userCtrl.addFavorite);
+router.delete('/:id', isLoggedIn, userCtrl.removeFavorite)
 
 
 function isLoggedIn(req, res, next) {

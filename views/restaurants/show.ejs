@@ -7,9 +7,27 @@
 <p><%=data.location.address%>, Texas</p>
 <p><%= data.cuisines %></p>
 <br>
-<form action="/users/add-favorite/<%= data.id %>" method="post">
-<button type="submit">Add To Favorites</button>
+
+<% let isInFavorites = false;  %>
+
+<% if(user) { %>
+  <% user.favorites.forEach(elem => { %>
+    <% if (elem.api_id == data.id) { %>
+      <% isInFavorites = true %>
+    <%  } %>
+  <% }) %>
+<% } %>
+
+<% if(isInFavorites) { %>
+  <form action="/users/<%= data.id %>/?_method=DELETE" method="post">
+    <button type="submit">Remove From Favorites</button>
+  </form>
+<% } else { %> 
+<form action="/users/<%= data.id %>" method="post">
+  <button type="submit">Add To Favorites</button>
 </form>
+<% } %>
+
 <hr>
 <h2>Reviews</h2>
 <form method="POST" action="/reviews/<%= data.id %>">
