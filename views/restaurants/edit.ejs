@@ -1,8 +1,6 @@
 <%- include('../partials/header') %>
 
-
 <h4>Edit Review for <%= restaurant.name %></h4>
-
 
 <form method="POST" action="/reviews/<%= restaurant.api_id %>/update/<%= reviewIdx %>">
     <textarea name="content"><%= restaurant.reviews[reviewIdx].content %></textarea>

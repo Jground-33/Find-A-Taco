@@ -1,5 +1,5 @@
 # Find a Taco
-<img src="./assets/Screenshot from find-a-taco.png" alt="Wireframe">  
+<img src="./assets/Screenshot from find-a-taco.png" alt="Wireframe" width="300px">  
 
 ## What does this app do?
  

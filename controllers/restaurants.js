@@ -11,22 +11,6 @@ module.exports = {
     show,
 }
 
-// function index(req, res) {
-//     res.render('restaurants/index', {
-//         user: req.user,
-//         title: 'restaurants',
-//         testData
-//     });
-// }
-
-// function show(req, res) {
-//     res.render('restaurants/show', {
-//         user: req.user,
-//         title: testShowData.name,
-//         data: testShowData,
-//     })
-// }
-
 function show(req, res) {
     client.getRestaurant({
         res_id: req.params.id,
@@ -73,8 +57,6 @@ function show(req, res) {
     });
 }
 
-
-
 function index (req, res) {
     let lat = 30.2638274;
     let lon = -97.7525458;
@@ -92,4 +74,3 @@ function index (req, res) {
             testData: JSON.parse(results)})
     });
 }
-
