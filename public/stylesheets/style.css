@@ -61,6 +61,7 @@ a {
   height: auto;
   display: flex;
   align-items: center;
+  margin: 10px;
 }
 
 .thumbnail {
