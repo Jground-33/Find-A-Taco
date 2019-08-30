@@ -58,14 +58,14 @@ a {
 .list-container {
   background-color: rgba(54, 213, 231, 0.4);
   width: 85%;
-  height: 8em;
+  height: auto;
   display: flex;
   align-items: center;
 }
 
 .thumbnail {
-  margin: 2%;
-  height: 90%;
+  margin: 1%;
+  height: 100px;
 }
 
 p {
@@ -88,7 +88,6 @@ th, td {
 
 section {
   margin-top: 100px;
-  height: 300vh;
   width: 100%;
   display: flex;
   justify-content: flex-start;
