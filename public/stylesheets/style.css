@@ -88,6 +88,7 @@ th, td {
 
 section {
   margin-top: 100px;
+  height: 300vh;
   width: 100%;
   display: flex;
   justify-content: flex-start;
