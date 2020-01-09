@@ -17,6 +17,9 @@
                 <a href="/restaurants/<%= rest.api_id %>/show" class="restaurant-name"><%= rest.name%></a>
                 <p><%= rest.address%></p>
             </div>
+            <form action="/users/<%= rest.api_id %>/?_method=DELETE" method="post">
+                <button type="submit">Remove From Favorites</button>
+              </form>
         </div>
     
     <br>
